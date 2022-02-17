@@ -21,7 +21,7 @@ export const fetchPosts = (category = '') => async dispatch => {
   dispatch(fetchPostsRequest);
   try {
     const posts = await getPosts(category);
-    console.log(posts)
+ 
     dispatch(fetchPostsSuccess(posts));
   } catch (error) {
     dispatch(fetchPostsError(error));

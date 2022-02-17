@@ -12,6 +12,11 @@ exports.login = (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
     if (err) return next(err);
     if (!user) return res.status(401).json(info);
+    if(!user.confirmed){
+      res.json({
+        message:"Verify Email"
+      })
+    }
     const token = this.createAuthToken(user);
     res.json({ token });
   })(req, res);

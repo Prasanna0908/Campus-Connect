@@ -68,11 +68,13 @@ const methods = {
 };
 
 export async function login(username, password, Email) {
+  console.log(Email, username)
   const json = await methods.post('login', { username, password, Email });
   return json.token;
 }
 
 export async function signup(username, password, Email) {
+  console.log(Email)
   const json = await methods.post('register', { username, password, Email });
   return json.token;
 }

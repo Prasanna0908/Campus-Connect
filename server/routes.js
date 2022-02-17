@@ -1,11 +1,28 @@
 const users = require('./controllers/users');
 const posts = require('./controllers/posts');
+const User = require('./models/user')
 const comments = require('./controllers/comments');
 const { jwtAuth, postAuth, commentAuth } = require('./auth');
 const router = require('express').Router();
+const jwt = require("jsonwebtoken");
 
 router.post('/login', users.validate(), users.login);
 router.post('/register', users.validate('register'), users.register);
+router.get('/confirmation/:token', async(req, res) => {
+  try{
+    console.log(req.params.token)
+    const user = jwt.verify(req.params.token,'%C&F)J@NcRfUjXn2r5u8x/A?D(G-KaPdSgVkYp3s6v9y$B&E)H@MbQeThWmZq4t7' )
+    const task = await User.findOneAndUpdate({ username:user.user}, {confirmed:"true"}, {
+      new: true,
+      runValidators: true,
+    })
+    console.log(task)
+    res.status(400).json(task);
+    
+  } catch(e) {
+    console.log(e)
+  }
+})
 
 router.param('post', posts.load);
 router.get('/posts', posts.list);

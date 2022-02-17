@@ -7,7 +7,34 @@ import PostListContainer from '../PostList/Container';
 import PostListContainerVotes from '../PostList/ContainerVotes';
 import PostDetailContainer from '../PostDetail/Container';
 import SidebarContainer from '../Sidebar/Container';
-import { Tabs, TabList, TabPanels, Tab, TabPanel, Avatar, Flex, Heading } from '@chakra-ui/react';
+import { useSelector } from 'react-redux'
+import {
+  useDisclosure,
+  Input,
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+  Avatar,
+  Flex,
+  Heading,
+  Button,
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton
+} from '@chakra-ui/react';
+import ChatAuthor from "../ChatAuthor/Component"
+
+// {this.props.token &&
+//   (this.props.user.id === this.props.author.id ||
+//     this.props.user.admin) && (
+//     <DeleteButton onClick={this.deleteComment} />
+//   )}
 
 const Wrapper = styled.div`
   display: flex;
@@ -24,60 +51,92 @@ const Wrapper = styled.div`
   }
 `;
 
-const Home = () => (
-  <Wrapper>
-    <HomeMainSection>
-      <Route component={CategoryMenuContainer} />
-      <Route exact path='/' component={PostListContainer} />
-      <Route
-        exact
-        path='/a/:category'
-        render={({ match }) => {
-          return (
+const Home = (props) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = React.useRef();
+  const username = useSelector(state => state.auth) 
+
+  console.log(props.token)
+  return (
+    <Wrapper>
+      <HomeMainSection>
+        <Route component={CategoryMenuContainer} />
+        <Route exact path='/' component={PostListContainer} />
+        <Route
+          exact
+          path='/a/:category'
+          render={({ match }) => {
+            return (
+              <div>
+                <Tabs variant='soft-rounded' colorScheme='blue'>
+                  <TabList>
+                    <Tab>By Date</Tab>
+                    <Tab>By Votes</Tab>
+                  </TabList>
+                  <TabPanels>
+                    <TabPanel>
+                      <PostListContainer category={match.params.category} />
+                    </TabPanel>
+                    <TabPanel>
+                      <PostListContainerVotes
+                        category={match.params.category}
+                      />
+                    </TabPanel>
+                  </TabPanels>
+                </Tabs>
+              </div>
+            );
+          }}
+        />
+        <Route
+          exact
+          path='/u/:username'
+          render={({ match }) => (
             <div>
-              <Tabs variant='soft-rounded' colorScheme='blue'>
-                <TabList>
-                  <Tab>By Date</Tab>
-                  <Tab>By Votes</Tab>
-                </TabList>
-                <TabPanels>
-                  <TabPanel>
-                    <PostListContainer category={match.params.category} />
-                  </TabPanel>
-                  <TabPanel>
-                  <PostListContainerVotes category={match.params.category} />
-                  </TabPanel>
-                </TabPanels>
-              </Tabs>
+              <Flex alignItems='center' justifyContent='center'>
+                <Avatar name={match.params.username} mr='5' />
+                {match.params.username}
+              </Flex>
+              <Flex flexDir='row' justifyContent='space-around'>
+                <Heading as='h4' size='md'>
+                  Here are all my Posts
+                </Heading>
+                <Button  ref={btnRef} onClick={onOpen}>Let's talk</Button>
+                <Drawer
+                  isOpen={isOpen}
+                  placement='right'
+                  size = "xl"
+                  onClose={onClose}
+                  finalFocusRef={btnRef}
+                >
+                  <DrawerOverlay />
+                  <DrawerContent>
+                    <DrawerCloseButton />
+                    <DrawerHeader>Create your account</DrawerHeader>
+
+                    <DrawerBody>
+                      <ChatAuthor />
+                    </DrawerBody>
+
+                   
+                  </DrawerContent>
+                </Drawer>
+              </Flex>
+              <PostListContainer username={match.params.username} />
             </div>
-          );
-        }}
-      />
-      <Route
-        exact
-        path='/u/:username'
-        render={({ match }) => (
-          <div>
-            <Flex alignItems="center" justifyContent="center" >
-            <Avatar name={match.params.username}  mr="5"/>
-            {match.params.username} 
-            
-            </Flex>
-            <Heading  as='h4' size='md'>Here are all my Posts</Heading>
-            <PostListContainer username={match.params.username} />
-          </div>
-        )}
-      />
-      <Route
-        exact
-        path='/a/:category/:post'
-        render={({ match, history }) => (
-          <PostDetailContainer id={match.params.post} history={history} />
-        )}
-      />
-    </HomeMainSection>
-    <Route component={SidebarContainer} />
-  </Wrapper>
-);
+          )}
+        />
+        <Route
+          exact
+          path='/a/:category/:post'
+          render={({ match, history }) => (
+            <PostDetailContainer id={match.params.post} history={history} />
+          )}
+        />
+      </HomeMainSection>
+      <Route component={SidebarContainer} />
+    </Wrapper>
+  );
+};
 
 export default Home;

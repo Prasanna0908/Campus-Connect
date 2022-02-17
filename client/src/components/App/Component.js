@@ -12,9 +12,11 @@ import CreatePostFormContainer from '../CreatePostForm/Container';
 import Home from '../Home';
 
 const App = props => (
+  
   <ThemeProvider theme={theme(props.dark)}>
     <Router history={history}>
       <>
+      {console.log(props,555)}
         <GlobalStyle />
         <Route component={HeaderContainer} />
         <Route component={ErrorNotificationContainer} />

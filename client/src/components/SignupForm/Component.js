@@ -18,9 +18,11 @@ class SignupForm extends React.Component {
     if (this.props.token) this.props.history.push('/');
   }
 
-  onSubmit = (props) => {
-    console.log(props)
-    this.props.attemptSignup(props.username, props.password, props.Email);
+  onSubmit = (props) => { 
+    
+    // this.props.history.push('/login') 
+    // console.log(this.props)
+    this.props.attemptSignup(props.username, props.password, props.Email,this.props.history);
   };
 
   render() {

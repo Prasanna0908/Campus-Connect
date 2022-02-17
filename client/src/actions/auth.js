@@ -8,11 +8,11 @@ const loginRequest = { type: LOGIN_REQUEST };
 const loginSuccess = token => ({ type: LOGIN_SUCCESS, token });
 const loginError = error => ({ type: LOGIN_ERROR, error });
 
-export const attemptLogin = (username, password, email) => async dispatch => {
-  console.log(username,email)
+export const attemptLogin = (username, password, Email) => async dispatch => {
+  console.log(username,Email)
   dispatch(loginRequest);
   try {
-    const token = await login(username, password, email);
+    const token = await login(username, password, Email);
     dispatch(loginSuccess(token));
   } catch (error) {
     dispatch(loginError(error));
@@ -27,11 +27,12 @@ const signupRequest = { type: SIGNUP_REQUEST };
 const signupSuccess = token => ({ type: SIGNUP_SUCCESS, token });
 const signupError = error => ({ type: SIGNUP_ERROR, error });
 
-export const attemptSignup = (username, password, Email) => async dispatch => {
-  console.log(username, Email)
+export const attemptSignup = (username, password, Email,history ) => async dispatch => {
+  console.log(username, Email,"ggh")
   dispatch(signupRequest);
   try {
     const token = await signup(username, password, Email);
+    history.push("/login")
     dispatch(signupSuccess(token));
   } catch (error) {
     dispatch(signupError(error));

@@ -50,7 +50,7 @@ exports.create = async (req, res, next) => {
   // }
 
   try {
-  console.log(1)
+
 
     const { title, url, category, type, text } = req.body;
     const author = req.user.id;
