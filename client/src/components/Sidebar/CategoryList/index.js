@@ -19,7 +19,7 @@ const SidebarCategoryList = () => (
   <CategoryList>
     <SidebarCategoryListHeader />
     {mapCategories(['all', ...categories])}
-    <Menu>
+    {/* <Menu>
   <MenuButton as={Button} //rightIcon={<ChevronDownIcon />}
   >
     Your Cats
@@ -46,7 +46,7 @@ const SidebarCategoryList = () => (
       <span>Simon the pensive</span>
     </MenuItem>
   </MenuList>
-</Menu>
+</Menu> */}
   </CategoryList>
 );
 

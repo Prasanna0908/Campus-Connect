@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import { headerItem } from '../shared/helpers';
+import { vesit_logo } from './vesit_logo.png';
+
+
 
 const Logo = styled(Link)`
   ${headerItem};
@@ -18,6 +21,6 @@ const Logo = styled(Link)`
   }
 `;
 
-const HeaderLogo = () => <Logo to='/'>VESIT</Logo>;
+const HeaderLogo = () =>  <Logo  to='/'>VESIT</Logo>;
 
 export default HeaderLogo;

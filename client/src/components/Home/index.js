@@ -7,7 +7,7 @@ import PostListContainer from '../PostList/Container';
 import PostListContainerVotes from '../PostList/ContainerVotes';
 import PostDetailContainer from '../PostDetail/Container';
 import SidebarContainer from '../Sidebar/Container';
-import { useSelector } from 'react-redux'
+// import { useSelector } from 'react-redux'
 import {
   useDisclosure,
   Input,
@@ -29,6 +29,7 @@ import {
   DrawerCloseButton
 } from '@chakra-ui/react';
 import ChatAuthor from "../ChatAuthor/Component"
+import store from '../../store'
 
 // {this.props.token &&
 //   (this.props.user.id === this.props.author.id ||
@@ -54,7 +55,8 @@ const Wrapper = styled.div`
 const Home = (props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
-  const username = useSelector(state => state.auth) 
+  
+  //  
 
   console.log(props.token)
   return (
@@ -115,6 +117,7 @@ const Home = (props) => {
                     <DrawerHeader>Create your account</DrawerHeader>
 
                     <DrawerBody>
+                      
                       <ChatAuthor />
                     </DrawerBody>
 
