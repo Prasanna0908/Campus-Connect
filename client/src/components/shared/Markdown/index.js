@@ -8,6 +8,7 @@ const StyledReactMarkdown = styled(ReactMarkdown)`
   color: ${props => props.theme.normalText};
   font-size: 15px;
   line-height: 1.5;
+  width:100%;
 
   p,
   ol,
@@ -56,6 +57,7 @@ const allowed = [
 
 const Markdown = props => (
   <StyledReactMarkdown
+  
     source={props.children}
     plugins={[breaks]}
     allowedTypes={allowed}

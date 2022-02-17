@@ -16,8 +16,9 @@ const Author = ({ username }) => (
 
      
       <StyledLink to={`/u/${username}`}>
-       
-       {username}
+         <Avatar  size='xs' name={username}  /> &nbsp;
+         {username}
+    
         </StyledLink>
 
 

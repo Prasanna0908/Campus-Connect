@@ -7,11 +7,12 @@ import Author from '../../shared/Author';
 import { Avatar, AvatarBadge, AvatarGroup } from '@chakra-ui/react'
 
 const Wrapper = styled.div`
-  font-size: 13px;
+ 
   margin-top: auto;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+ 
 
   & > * {
     margin-right: 4px;
@@ -26,17 +27,21 @@ const Wrapper = styled.div`
   }
 `;
 
+
 const PostContentDetail = props => (
-  <Wrapper>
-    {console.log(props)}
-    <Link to={`/b/${props.category}/${props.id}`}>
+  <Wrapper >
+ 
+    <Link to={`/a/${props.category}/${props.id}`}>
       {props.commentCount} comment{props.commentCount !== 1 ? 's' : null}
     </Link>
-    <Link to={`/b/${props.category}`}>/a/{props.category}</Link>
+    <Link to={`/a/${props.category}`}>/a/{props.category}</Link>
     <span>by </span>
    
+  
     <Author username={props.author && props.author.username} />
     <span>{moment(props.created).fromNow()}</span>
+   
+  
   </Wrapper>
 );
 

@@ -8,6 +8,10 @@ import AppContainer from './components/App/Container';
 import { ChakraProvider } from '@chakra-ui/react'
 import * as serviceWorker from './serviceWorker';
 
+
+
+
+
 ReactDOM.render(
   <Provider store={store}>
     <ChakraProvider>

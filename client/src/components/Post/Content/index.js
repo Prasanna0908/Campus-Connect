@@ -13,6 +13,7 @@ const Wrapper = styled.div`
   border-left: 1px solid ${props => props.theme.border};
   padding: 8px;
   min-width: 0;
+  min-height: 7em
 `;
 
 const renderContent = props => {
@@ -27,7 +28,7 @@ const renderContent = props => {
 
     case 'text':
       if (props.showFullPost) {
-        return <PostContentFullText>{props.text}</PostContentFullText>;
+        return <PostContentFullText style={{width:"100%", textAlign:"center"}}>{props.text}</PostContentFullText>;
       }
       return <PostContentPreview>{props.text}</PostContentPreview>;
     case 'poll':
@@ -53,7 +54,7 @@ const PostContent = ({
   showFullPost,
   ...details
 }) => (
-  <Wrapper>
+  <Wrapper >
     
     <PostContentTitle
       url={url}
@@ -61,6 +62,7 @@ const PostContent = ({
       type={type}
       full={showFullPost}
       {...details}
+      
     />
     {renderContent({ type, url, text, showFullPost })}
     

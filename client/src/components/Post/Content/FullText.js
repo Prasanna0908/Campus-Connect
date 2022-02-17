@@ -9,11 +9,12 @@ const Wrapper = styled.div`
   border-right: none;
   padding: 8px;
   background-color: ${props => props.theme.inputBackground};
+  width:100%
 `;
 
 const PostContentFullText = props => (
-  <Wrapper>
-    <Markdown>{props.children}</Markdown>
+  <Wrapper style={{width:"100%"}}>
+    <Markdown style={{width:"100%"}} >{props.children}</Markdown>
   </Wrapper>
 );
 

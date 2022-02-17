@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import { headerItem } from '../shared/helpers';
-import { vesit_logo } from './vesit_logo.png';
+
 
 
 

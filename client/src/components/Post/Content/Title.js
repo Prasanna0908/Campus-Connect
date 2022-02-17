@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 import { overflow, link } from '../../shared/helpers';
+import { Heading, Flex , Badge} from '@chakra-ui/react'
+import { AiOutlineEye } from "react-icons/ai";
 
 const Wrapper = styled.div`
   display: flex;
@@ -29,8 +31,8 @@ const renderTitle = props => {
       return <a href={props.url}>{props.title}</a>;
 
     case 'text':
-      if (props.full) return <span>{props.title}</span>;
-      return <Link to={`/a/${props.category}/${props.id}`}>{props.title}</Link>;
+      if (props.full) return <div ><Heading as='h5' size='xl'>{props.title}</Heading></div>;
+      return <Link to={`/a/${props.category}/${props.id}`}><Heading as='h5'fontWeight="bold" size='md'>{props.title}</Heading></Link>;
     
     case 'poll':
       if (props.full) return <span>{props.title}</span>;
@@ -42,7 +44,16 @@ const renderTitle = props => {
 };
 
 const PostContentTitle = props => (
-  <Wrapper full={props.full}>{renderTitle(props)}</Wrapper>
+  <div>
+    {console.log(props)}
+    <div>
+      <Flex alignItems='center'><AiOutlineEye /> &nbsp;  {props.views} views &nbsp;    &nbsp; 
+      <Badge colorScheme='green'>{props.category}</Badge> </Flex>
+    
+    </div>
+
+  <Wrapper  full={props.full}>{renderTitle(props)}</Wrapper>
+  </div>
 );
 
 export default PostContentTitle;
