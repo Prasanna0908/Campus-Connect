@@ -39,6 +39,8 @@ router.param('comment', comments.load);
 router.post('/post/:post', [jwtAuth, comments.validate], comments.create);
 router.delete('/post/:post/:comment', [jwtAuth, commentAuth], comments.destroy);
 
+//router.post('/adminpost/:post', [jwtAuth, comments.validate], comments.create);
+
 module.exports = app => {
   app.use('/api', router);
 

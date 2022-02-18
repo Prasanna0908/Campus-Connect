@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const config = require('../config');
+const StreamChat = require('stream-chat').StreamChat
 
 exports.createAuthToken = user => {
   return jwt.sign({ user }, config.jwt.secret, {
@@ -17,8 +18,20 @@ exports.login = (req, res, next) => {
         message:"Verify Email"
       })
     }
+
+    // Define values. 
+const api_key = '87e4fmr6sffp' 
+const api_secret = 'vgjwy8ev6ybdf44kvc2m525anvztgbmesp94au87j2hgne5dqkt5eu4uc4wy9axr' 
+console.log(user)
+const user_id = user.id
+ 
+// Initialize a Server Client 
+const serverClient = StreamChat.getInstance( api_key, api_secret); 
+// Create User Token 
+const token2 = serverClient.createToken(user_id); 
+console.log(token2)
     const token = this.createAuthToken(user);
-    res.json({ token });
+    res.json({ token,  token2  });
   })(req, res);
 };
 

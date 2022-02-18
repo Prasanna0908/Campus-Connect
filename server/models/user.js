@@ -1,25 +1,31 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-const userSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  email: {
-    type: String,
-    trim: true,
-    lowercase: true,
-     
-    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
-},
-confirmed:{
-  type:Boolean,
-  default:false
-},
-  admin: {
-    type:Boolean,
-//default:true
-  }
-}, { collation: { locale: 'en', strength: 1 } });
+const userSchema = new mongoose.Schema(
+  {
+    username: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    email: {
+      type: String,
+      trim: true,
+      lowercase: true,
+
+      match: [
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+        'Please fill a valid email address'
+      ]
+    },
+    confirmed: {
+      type: Boolean,
+      default: false
+    },
+    admin: {
+      type: Boolean,
+      default: true
+    }
+  },
+  { collation: { locale: 'en', strength: 1 } }
+);
 
 userSchema.set('toJSON', { getters: true });
 userSchema.options.toJSON.transform = (doc, ret) => {
@@ -30,12 +36,12 @@ userSchema.options.toJSON.transform = (doc, ret) => {
   return obj;
 };
 
-userSchema.pre('save', async function (next) {
+userSchema.pre('save', async function(next) {
   this.password = await bcrypt.hash(this.password, 10);
   next();
 });
 
-userSchema.methods.isValidPassword = async function (password) {
+userSchema.methods.isValidPassword = async function(password) {
   return await bcrypt.compare(password, this.password);
 };
 

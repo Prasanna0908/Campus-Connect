@@ -42,6 +42,7 @@ function App(props) {
       <header className="App-header">
         <div style={{ width: 400 }}>
           <ReactSearchAutocomplete
+           placeholder="Search by Title"
             items={items}
             onSearch={handleOnSearch}
             onHover={handleOnHover}

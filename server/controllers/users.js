@@ -4,16 +4,18 @@ const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 
+
+const StreamChat = require('stream-chat').StreamChat
+
 exports.login = (req, res, next) => {
   // const result = validationResult(req);
-
 
   // if (!result.isEmpty()) {
   //   const errors = result.array({ onlyFirstError: true });
   //   return res.status(422).json({ errors });
   // }
 
-  console.log(req.body)
+  console.log(req.body);
 
   login(req, res, next);
 };
@@ -26,44 +28,59 @@ exports.register = async (req, res, next) => {
   // }
 
   try {
-    
     const { username, password, Email } = req.body;
-    const user = await User.create({ username, password, email:Email});
+    const user = await User.create({ username, password, email: Email });
     let transporter = nodemailer.createTransport({
       service: 'Gmail',
       auth: {
-        user: "sidkakela@gmail.com",
-        pass: "sidkela123" 
+        user: 'sidkakela@gmail.com',
+        pass: 'sidkela123'
       }
     });
     try {
-        const emailToken = jwt.sign(
-          {
-            user: user.username,
-          },
-          "%C&F)J@NcRfUjXn2r5u8x/A?D(G-KaPdSgVkYp3s6v9y$B&E)H@MbQeThWmZq4t7",
-          {
-            expiresIn: '1d',
-          },
-        );
+      const emailToken = jwt.sign(
+        {
+          user: user.username
+        },
+        '%C&F)J@NcRfUjXn2r5u8x/A?D(G-KaPdSgVkYp3s6v9y$B&E)H@MbQeThWmZq4t7',
+        {
+          expiresIn: '1d'
+        }
+      );
 
-        const url = `http://localhost:8080/api/confirmation/${emailToken}`;
+      const url = `http://localhost:8080/api/confirmation/${emailToken}`;
 
-        await transporter.sendMail({
-          to: "sidkakela@gmail.com",
-          subject: 'Confirm Email',
-          html: `Please click this email to confirm your email: <a href="${url}">${url}</a>`,
-        });
+      await transporter.sendMail({
+        to: 'sidkakela@gmail.com',
+        subject: 'Confirm Email',
+        html: `Please click this email to confirm your email: <a href="${url}">${url}</a>`
+      });
+      //
+      // Define values.
+      const api_key = '87e4fmr6sffp';
+      const api_secret =
+        'vgjwy8ev6ybdf44kvc2m525anvztgbmesp94au87j2hgne5dqkt5eu4uc4wy9axr';
+     // const user_id = 'john';
 
-        const token = createAuthToken(user.toJSON());
-        res.status(201).json({ token });
-      } catch (e) {
-    next(e);
+      // Initialize a Server Client
+      const serverClient = StreamChat.getInstance(api_key,api_secret);
 
-        console.log(e);
-      }
+      const updateResponse = await serverClient.upsertUsers([ 
+        { id: user._id, role: 'user', book: user.username}, 
+      
+         ]);
+         
+         console.log(updateResponse)
+      
 
-    
+
+      const token = createAuthToken(user.toJSON());
+      res.status(201).json({ token });
+    } catch (e) {
+      next(e);
+
+      console.log(e);
+    }
   } catch (err) {
     next(err);
   }

@@ -11,9 +11,11 @@ import SignupFormContainer from '../SignupForm/Container';
 import CreatePostFormContainer from '../CreatePostForm/Container';
 import Home from '../Home';
 import { useEffect,useState } from "react";
+import Posts from '../Admin/Posts'
 //import { withRouter } from "react-router-dom";
 //import ScrollToTop from "./ScrollToTop";
 import {FaArrowCircleUp} from 'react-icons/fa';
+import store from '../../store';
 import '../../style.css';
 
 const ScrollArrow = () =>{
@@ -39,12 +41,22 @@ const ScrollArrow = () =>{
   );
 }
 
-const App = props => (
+const App = props => {
+  
+  const [stores, setStore] = useState(null);
+
+  useEffect(() => {
+    let s = store.getState()
+    console.log(s)
+    setStore(s)
+    console.log(stores, s,"sf")
+  }, []);
+  return(
   
   <ThemeProvider theme={theme(props.dark)}>
     <Router history={history}>
       <>
-      {console.log(props,555)}
+      
         <GlobalStyle />
         <Route component={HeaderContainer} />
         <Route component={ErrorNotificationContainer} />
@@ -53,11 +65,13 @@ const App = props => (
           <Route path='/login' component={LoginFormContainer} />
           <Route path='/signup' component={SignupFormContainer} />
           <Route path='/createpost' component={CreatePostFormContainer} />
+          <Route path='/admin' component={Posts} />
           <Route path='/' component={Home} />
         </Switch>
       </>
+      
     </Router>
   </ThemeProvider>
-);
+)};
 
 export default App;

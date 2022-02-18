@@ -12,7 +12,8 @@ export const attemptLogin = (username, password, Email) => async dispatch => {
   console.log(username,Email)
   dispatch(loginRequest);
   try {
-    const token = await login(username, password, Email);
+    const {token,token2} = await login(username, password, Email);
+    localStorage.setItem('chatToken', token2);
     dispatch(loginSuccess(token));
   } catch (error) {
     dispatch(loginError(error));

@@ -40,7 +40,7 @@ import store from '../../store';
 const Wrapper = styled.div`
   display: flex;
   align-items: flex-start;
-  margin: 0 10vw;
+  margin: 0 5vw;
 
   @media (max-width: 1024px) {
     margin: 0 5vw;

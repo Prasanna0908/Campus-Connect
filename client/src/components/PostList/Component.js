@@ -8,7 +8,7 @@ import SearchBox from "./SearchBox"
 
 const List = styled.ul`
   list-style: none;
-  border: 1px solid ${props => props.theme.border};
+  border:0;
   border-radius: 2px;
  
 
@@ -70,8 +70,8 @@ class PostList extends React.Component {
         <TabList>
           <Tab>By Date</Tab>
           <Tab>By Votes</Tab>
-          <SearchBox props={this.props.posts} />
-          {console.log(this.props.posts)}
+          <SearchBox props={this.props.posts} placeholder="Search by Title" />
+         
         </TabList>
 
         <TabPanels>
