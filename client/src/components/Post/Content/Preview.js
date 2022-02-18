@@ -3,7 +3,7 @@ import { overflow } from '../../shared/helpers';
 
 const PostContentPreview = styled.div`
   ${overflow};
-
+  margin : 10px 0px;
   padding-bottom: 1px;
   font-size: 13px;
   line-height: 19px;

@@ -17,7 +17,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-
 App {
   text-align: center;
   height: 5000px;
@@ -42,7 +41,7 @@ App {
   -o-transition: opacity 0.4s;
 }
 
-.scrollTop:hover{
+.scrollTop:hover {
   opacity: 1;
 }
 
@@ -53,4 +52,24 @@ App {
   100% {
     opacity: 0.5;
   }
+}
+
+.bJZgZY {
+  color: black !important;
+}
+
+.kYFtri * {
+  color: black !important;
+}
+.kYFtri *:hover {
+  color: #1890ff !important;
+}
+
+/* .exvOBC {
+  background-color: red !important;
+} */
+
+.exvOBC :hover {
+  background-color: #ffffff !important ;
+  color: #1890ff !important;
 }

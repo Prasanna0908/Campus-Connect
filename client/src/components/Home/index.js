@@ -28,8 +28,8 @@ import {
   DrawerContent,
   DrawerCloseButton
 } from '@chakra-ui/react';
-import ChatAuthor from "../ChatAuthor/Component"
-import store from '../../store'
+import ChatAuthor from '../ChatAuthor/Component';
+import store from '../../store';
 
 // {this.props.token &&
 //   (this.props.user.id === this.props.author.id ||
@@ -52,13 +52,13 @@ const Wrapper = styled.div`
   }
 `;
 
-const Home = (props) => {
+const Home = props => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
-  
-  //  
 
-  console.log(props.token)
+  //
+
+  console.log(props.token);
   return (
     <Wrapper>
       <HomeMainSection>
@@ -68,26 +68,7 @@ const Home = (props) => {
           exact
           path='/Vesit/:category'
           render={({ match }) => {
-            return (
-              <div>
-                <Tabs variant='soft-rounded' colorScheme='blue'>
-                  <TabList>
-                    <Tab>By Date</Tab>
-                    <Tab>By Votes</Tab>
-                  </TabList>
-                  <TabPanels>
-                    <TabPanel>
-                      <PostListContainer category={match.params.category} />
-                    </TabPanel>
-                    <TabPanel>
-                      <PostListContainerVotes
-                        category={match.params.category}
-                      />
-                    </TabPanel>
-                  </TabPanels>
-                </Tabs>
-              </div>
-            );
+            return <PostListContainer category={match.params.category} />;
           }}
         />
         <Route
@@ -103,11 +84,13 @@ const Home = (props) => {
                 <Heading as='h4' size='md'>
                   Here are all my Posts
                 </Heading>
-                <Button  ref={btnRef} onClick={onOpen}>Let's talk</Button>
+                <Button ref={btnRef} onClick={onOpen}>
+                  Let's talk
+                </Button>
                 <Drawer
                   isOpen={isOpen}
                   placement='right'
-                  size = "xl"
+                  size='xl'
                   onClose={onClose}
                   finalFocusRef={btnRef}
                 >
@@ -117,11 +100,8 @@ const Home = (props) => {
                     <DrawerHeader>Create your account</DrawerHeader>
 
                     <DrawerBody>
-                      
                       <ChatAuthor />
                     </DrawerBody>
-
-                   
                   </DrawerContent>
                 </Drawer>
               </Flex>
