@@ -4,12 +4,18 @@ import Form from '../shared/form/Form';
 import renderField from '../shared/form/renderField';
 import { usernameValidator, passwordValidator } from '../../util/validators';
 import SubmitButton from '../shared/form/SubmitButton';
+import PasswordStrengthBar from 'react-password-strength-bar';
 
 class SignupForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {pass: ""};
+  }
   componentDidMount() {
     this.redirectIfLoggedIn();
   }
 
+  
   componentDidUpdate(prevProps, prevState, snapshot) {
     this.redirectIfLoggedIn();
   }
@@ -44,7 +50,12 @@ class SignupForm extends React.Component {
           type='password'
           component={renderField}
           validate={passwordValidator}
+          onChange={(e)=>{
+            this.setState({pass: e.target.value})
+          }
+          }
         />
+        <PasswordStrengthBar style={{width:"100%"}} password={this.state.pass} />
         <Field
           name='password2'
           label='confirm password'

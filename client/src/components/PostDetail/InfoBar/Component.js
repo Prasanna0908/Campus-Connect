@@ -3,6 +3,7 @@ import styled from 'styled-components/macro';
 import DeleteButton from '../../shared/DeleteButton';
 import { FacebookShareButton, TwitterShareButton,WhatsappShareButton ,EmailShareButton,  LinkedinShareButton} from "react-share";
 import { FacebookIcon, TwitterIcon,WhatsappIcon,EmailIcon,  LinkedinIcon } from "react-share";
+import EditButton from '../../shared/EditButton';
 
 const Wrapper = styled.div`
   display: flex;
@@ -25,9 +26,14 @@ class PostDetailInfoBar extends React.Component {
   render() {
     return (
       <Wrapper round={!this.props.token}>
-        <span>{this.props.views} views</span>
+        <span >{this.props.views} views</span>
         <span>&nbsp;|&nbsp;</span>
         <span>{this.props.upvotePercentage}% upvoted</span>
+        {this.props.token &&
+          (this.props.user.id === this.props.author.id ||
+            this.props.user.admin) && (
+            <EditButton onClick={this.deletePost}/>
+          )}
         {this.props.token &&
           (this.props.user.id === this.props.author.id ||
             this.props.user.admin) && (

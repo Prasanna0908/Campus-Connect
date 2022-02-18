@@ -5,6 +5,7 @@ import PostContentPreview from './Preview';
 import PostContentFullText from './FullText';
 import PostContentDetail from './Detail';
 import Poll from 'react-polls';
+import { Markup } from 'interweave';
 
 const Wrapper = styled.div`
   display: flex;
@@ -30,7 +31,7 @@ const renderContent = props => {
       if (props.showFullPost) {
         return <PostContentFullText style={{width:"100%", textAlign:"center"}}>{props.text}</PostContentFullText>;
       }
-      return <PostContentPreview>{props.text}</PostContentPreview>;
+      return <PostContentPreview><Markup content={props.text.replace(/<\/?[^>]+(>|$)/g, "")} /></PostContentPreview>;
     case 'poll':
       if (props.showFullPost) {
         return <PostContentFullText>{props.text}</PostContentFullText>;

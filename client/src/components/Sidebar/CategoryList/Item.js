@@ -22,13 +22,13 @@ const Item = styled(NavLink)`
 const SidebarCategoryListItem = ({ category }) => {
   const isAll = category === 'all';
   return (
-    // <Item exact={isAll} to={isAll ? '/' : `/a/${category}`}>
+    // <Item exact={isAll} to={isAll ? '/' : `/Vesit/${category}`}>
     //   {category}
     // </Item>
 
       <Menu mb="5">
-      <Link as={RouterNavLink} exact={isAll} to={isAll ? '/' : `/a/${category}`} textDecor='none'>
-  <MenuButton w='100%' mb="1" as={Button} exact={isAll} to={isAll ? '/' : `/a/${category}`} //rightIcon={<ChevronDownIcon />}
+      <Link as={RouterNavLink} exact={isAll} to={isAll ? '/' : `/Vesit/${category}`} textDecor='none'>
+  <MenuButton w='100%' mb="1" as={Button} exact={isAll} to={isAll ? '/' : `/Vesit/${category}`} //rightIcon={<ChevronDownIcon />}
   >
     {category}
   </MenuButton>

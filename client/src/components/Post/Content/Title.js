@@ -32,11 +32,11 @@ const renderTitle = props => {
 
     case 'text':
       if (props.full) return <div ><Heading as='h5' size='xl'>{props.title}</Heading></div>;
-      return <Link to={`/a/${props.category}/${props.id}`}><Heading as='h5'fontWeight="bold" size='md'>{props.title}</Heading></Link>;
+      return <Link to={`/Vesit/${props.category}/${props.id}`}><Heading as='h5'fontWeight="bold" size='md'>{props.title}</Heading></Link>;
     
     case 'poll':
       if (props.full) return <span>{props.title}</span>;
-      return <Link to={`/a/${props.category}/${props.id}`}>{props.title}</Link>;
+      return <Link to={`/Vesit/${props.category}/${props.id}`}>{props.title}</Link>;
 
     default:
       break;
@@ -47,7 +47,7 @@ const PostContentTitle = props => (
   <div>
     {console.log(props)}
     <div>
-      <Flex alignItems='center'><AiOutlineEye /> &nbsp;  {props.views} views &nbsp;    &nbsp; 
+      <Flex alignItems='center' style={{fontWeight: "100"}}><AiOutlineEye style={{fill: "#999"}}/> &nbsp;  {props.views} views &nbsp;    &nbsp; 
       <Badge colorScheme='green'>{props.category}</Badge> </Flex>
     
     </div>

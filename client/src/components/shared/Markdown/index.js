@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import ReactMarkdown from 'react-markdown';
 import breaks from 'remark-breaks';
 import renderers from './renderers';
-
+import { Markup } from 'interweave';
 const StyledReactMarkdown = styled(ReactMarkdown)`
   color: ${props => props.theme.normalText};
   font-size: 15px;
@@ -56,14 +56,15 @@ const allowed = [
 ];
 
 const Markdown = props => (
-  <StyledReactMarkdown
+  // <StyledReactMarkdown
   
-    source={props.children}
-    plugins={[breaks]}
-    allowedTypes={allowed}
-    renderers={renderers}
-    unwrapDisallowed
-  />
+  //   source={props.children}
+  //   plugins={[breaks]}
+  //   allowedTypes={allowed}
+  //   renderers={renderers}
+  //   unwrapDisallowed
+  // />
+  <Markup content={props.children} />
 );
 
 export default Markdown;

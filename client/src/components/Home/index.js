@@ -66,7 +66,7 @@ const Home = (props) => {
         <Route exact path='/' component={PostListContainer} />
         <Route
           exact
-          path='/a/:category'
+          path='/Vesit/:category'
           render={({ match }) => {
             return (
               <div>
@@ -131,7 +131,7 @@ const Home = (props) => {
         />
         <Route
           exact
-          path='/a/:category/:post'
+          path='/Vesit/:category/:post'
           render={({ match, history }) => (
             <PostDetailContainer id={match.params.post} history={history} />
           )}

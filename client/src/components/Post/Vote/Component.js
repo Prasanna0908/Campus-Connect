@@ -76,7 +76,7 @@ class PostVote extends React.Component {
           canVote={!!this.props.token}
           didVote={this.state.didUpvote}
           onClick={this.upvote}
-        />
+        ></PostVoteUpvote>
         <span>{this.state.score}</span>
         <PostVoteDownvote
           canVote={!!this.props.token}

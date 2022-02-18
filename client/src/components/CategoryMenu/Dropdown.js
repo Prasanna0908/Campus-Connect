@@ -25,7 +25,7 @@ class CategoryMenuDropdown extends React.Component {
   handleOnChange = event => {
     const category = event.target.value;
     if (category !== this.props.category) {
-      const url = category === 'all' ? '/' : `/a/${category}`;
+      const url = category === 'all' ? '/' : `/Vesit/${category}`;
       this.props.history.push(url);
     }
   };

@@ -25,7 +25,7 @@ it('renders the information correctly', () => {
   const timestamp = wrapper.find('span').at(1);
 
   expect(links.at(0).text()).toEqual('0 comments');
-  expect(links.at(1).text()).toEqual(`/a/${data.category}`);
+  expect(links.at(1).text()).toEqual(`/Vesit/${data.category}`);
   expect(links.at(2).text()).toEqual(data.author.username);
   expect(timestamp.text()).toEqual(moment(data.created).fromNow());
 });

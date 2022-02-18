@@ -4,6 +4,9 @@ import categories from '../../categories';
 import Form from '../shared/form/Form';
 import renderField from '../shared/form/renderField';
 import SubmitButton from '../shared/form/SubmitButton';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import Label from '../shared/form/Label';
 
 const postTypes = [
   {
@@ -21,14 +24,23 @@ const postTypes = [
 ];
 
 class CreatePostForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {markdown: ""};
+  }
+
   componentDidUpdate(prevProps, prevState, snapshot) {
     const { token, post, history } = this.props;
     if (!token) history.push('/');
-    if (post) history.push(`/a/${post.category}/${post.id}`);
+    if (post) history.push(`/Vesit/${post.category}/${post.id}`);
   }
 
-  onSubmit = post => this.props.attemptCreatePost(post);
-  // onSubmit = post => console.log(post);
+  
+
+  
+
+  onSubmit = post => this.props.attemptCreatePost(post, this.state.markdown);
+  // onSubmit = (post) => console.log(post, this.state.markdown);
 
   mapCategories = () =>
     categories.map((category, index) => (
@@ -64,18 +76,42 @@ class CreatePostForm extends React.Component {
           <Field name='url' label='url' type='url' component={renderField} />
         )}
         {this.props.form.values.type === 'text' && (
-          <Field
+         <div>
+            {/* <Field
             name='text'
             label='text'
             type='textarea'
             component={renderField}
+          /> */}
+     
+          <CKEditor
+      
+              editor={ ClassicEditor }
+              // data="<p>Hello from CKEditor 5!</p>"
+              onReady={ editor => {
+                  // You can store the "editor" and use when it is needed.
+                  console.log( 'Editor is ready to use!', editor );
+              } }
+              onChange={ ( event, editor ) => {
+                  let data = editor.getData();
+                  this.setState({markdown:data})
+                  console.log(this.state.markdown)
+                  console.log( { event, editor, data } );
+              } }
+              onBlur={ ( event, editor ) => {
+                  //console.log( 'Blur.', editor );
+              } }
+              onFocus={ ( event, editor ) => {
+                 // console.log( 'Focus.', editor );
+              } }
           />
+         </div>
         )}
         {this.props.form.values.type === 'poll' && (
          <div style={{width:"100%"}}>
             <Field
             name='text'
-            label='texwwwt'
+            label='Poll Question'
             type='textarea'
 
             
