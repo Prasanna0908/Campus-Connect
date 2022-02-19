@@ -7,6 +7,7 @@ import SubmitButton from '../shared/form/SubmitButton';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Label from '../shared/form/Label';
+import Chips, { Chip } from 'react-chips';
 
 const postTypes = [
   {
@@ -26,7 +27,7 @@ const postTypes = [
 class CreatePostForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {markdown: ""};
+    this.state = { markdown: '', chips: [] };
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -35,13 +36,12 @@ class CreatePostForm extends React.Component {
     if (post) history.push(`/Vesit/${post.category}/${post.id}`);
   }
 
-  
-
-  
-
-  onSubmit = post => this.props.attemptCreatePost(post, this.state.markdown);
+  onSubmit = post => this.props.attemptCreatePost(post, this.state.markdown,this.state.chips);
   // onSubmit = (post) => console.log(post, this.state.markdown);
 
+  onChange = chips => {
+    this.setState({ chips });
+  };
   mapCategories = () =>
     categories.map((category, index) => (
       <option key={index} value={category}>
@@ -76,52 +76,47 @@ class CreatePostForm extends React.Component {
           <Field name='url' label='url' type='url' component={renderField} />
         )}
         {this.props.form.values.type === 'text' && (
-         <div>
+          <div>
             {/* <Field
             name='text'
             label='text'
             type='textarea'
             component={renderField}
           /> */}
-     
-          <CKEditor
-      
-              editor={ ClassicEditor }
+
+            <CKEditor
+              editor={ClassicEditor}
               // data="<p>Hello from CKEditor 5!</p>"
-              onReady={ editor => {
-                  // You can store the "editor" and use when it is needed.
-                  console.log( 'Editor is ready to use!', editor );
-              } }
-              onChange={ ( event, editor ) => {
-                  let data = editor.getData();
-                  this.setState({markdown:data})
-                  console.log(this.state.markdown)
-                  console.log( { event, editor, data } );
-              } }
-              onBlur={ ( event, editor ) => {
-                  //console.log( 'Blur.', editor );
-              } }
-              onFocus={ ( event, editor ) => {
-                 // console.log( 'Focus.', editor );
-              } }
-          />
-         </div>
+              onReady={editor => {
+                // You can store the "editor" and use when it is needed.
+                console.log('Editor is ready to use!', editor);
+              }}
+              onChange={(event, editor) => {
+                let data = editor.getData();
+                this.setState({ markdown: data });
+                console.log(this.state.markdown);
+                console.log({ event, editor, data });
+              }}
+              onBlur={(event, editor) => {
+                //console.log( 'Blur.', editor );
+              }}
+              onFocus={(event, editor) => {
+                // console.log( 'Focus.', editor );
+              }}
+            />
+          </div>
         )}
         {this.props.form.values.type === 'poll' && (
-         <div style={{width:"100%"}}>
-            <Field
-            name='text'
-            label='Poll Question'
-            type='textarea'
-
+          <div style={{ width: '100%' }}>
             
-            component={renderField}
-          />
-
-         
-         </div>
+            <Chips
+              value={this.state.chips}
+              onChange={this.onChange}
+              placeholder={'Create Answers for your Poll Seperated by Comma'}
+            />
+          </div>
         )}
-        
+
         <SubmitButton type='submit'>create post</SubmitButton>
       </Form>
     );

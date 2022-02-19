@@ -6,7 +6,6 @@ const activeClassName = 'active';
 
 const NavLink = styled(RouterNavLink).attrs({ activeClassName })`
   ${link};
-  
   position: relative;
   
   ::after {

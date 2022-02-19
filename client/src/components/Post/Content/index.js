@@ -36,10 +36,10 @@ const renderContent = props => {
       if (props.showFullPost) {
         return <PostContentFullText>{props.text}</PostContentFullText>;
       }
-      return <Poll question={'Is react-polls useful?'} answers={[
-        { option: 'Yes', votes: 8 },
-        { option: 'No', votes: 2 }
-      ] } />;
+console.log(props,"drf")
+      return <Poll question={props.title} answers={props.text.split(',').map((val) => (
+        {option: val , votes:1}
+       ) )} />;
 
     default:
       break;

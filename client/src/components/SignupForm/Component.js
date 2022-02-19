@@ -2,7 +2,7 @@ import React from 'react';
 import { Field } from 'redux-form';
 import Form from '../shared/form/Form';
 import renderField from '../shared/form/renderField';
-import { usernameValidator, passwordValidator } from '../../util/validators';
+import { usernameValidator, passwordValidator,emailValidator } from '../../util/validators';
 import SubmitButton from '../shared/form/SubmitButton';
 import PasswordStrengthBar from 'react-password-strength-bar';
 
@@ -67,6 +67,7 @@ class SignupForm extends React.Component {
           label='email'
           type='email'
           component={renderField}
+          validate={emailValidator}
         />
         <SubmitButton type='submit'>sign up</SubmitButton>
       </Form>

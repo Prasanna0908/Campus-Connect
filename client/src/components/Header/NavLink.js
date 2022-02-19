@@ -9,6 +9,7 @@ const HeaderNavLink = styled(NavLink)`
   
   position: relative;
   cursor: pointer;
+  // color:white;
   color: ${props => props.theme.mutedText};
   
   ::after {

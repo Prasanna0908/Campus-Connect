@@ -97,7 +97,7 @@ const Home = props => {
                   <DrawerOverlay />
                   <DrawerContent>
                     <DrawerCloseButton />
-                    <DrawerHeader>Create your account</DrawerHeader>
+                  
 
                     <DrawerBody>
                       <ChatAuthor />

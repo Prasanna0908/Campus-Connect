@@ -12,7 +12,7 @@ const Logo = styled(Link)`
   margin-right: auto;
   font-size: 24px;
   font-weight: 500;
-  color: ${props => props.theme.normalText};
+  // color: ${props => props.theme.normalText};
   text-decoration: none;
   
   @media (max-width: 425px) {
@@ -21,6 +21,6 @@ const Logo = styled(Link)`
   }
 `;
 
-const HeaderLogo = () =>  <Logo  to='/'>VESIT</Logo>;
+const HeaderLogo = () =>  <Logo  to='/'><img style={{height:"45px", marginRight:"60px", fontSize:"20px"}} src="https://upload.wikimedia.org/wikipedia/en/e/e8/Vesitlog-transparent.png"/>Vesit</Logo>;
 
 export default HeaderLogo;

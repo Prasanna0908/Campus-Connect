@@ -11,6 +11,9 @@ export const checkMinLength = (value, len) =>
 export const checkValidChars = value =>
   /^[a-zA-Z0-9_-]+$/.test(value) ? undefined : 'contains invalid characters';
 
+  export const checkValidEmail = value =>
+  /^[a-z0-9](\.?[a-z0-9]){5,}@ves\.ac\.in$/.test(value) ? undefined : 'Enter Valid VES ID';
+
 export const checkIfTrimmed = value =>
   value.trim() === value ? undefined : 'cannot start or end with whitespace';
 
@@ -26,6 +29,7 @@ export const validUrl = value => {
 const max = len => value => checkMaxLength(value, len);
 const min = len => value => checkMinLength(value, len);
 const validChars = value => checkValidChars(value);
+const validEmail = value => checkValidEmail(value);
 const trimmed = value => checkIfTrimmed(value);
 
 export const required = value => (value ? undefined : 'required');
@@ -35,6 +39,7 @@ export const postType = value =>
     : 'must be link or text post';
 export const usernameValidator = [required, max(32), validChars, trimmed];
 export const passwordValidator = [required, min(8), max(72)];
+export const emailValidator = [required,max(72),validEmail];
 export const titleValidator = value =>
   required(value) || checkMaxLength(value, 100);
 export const textPostValidator = value =>

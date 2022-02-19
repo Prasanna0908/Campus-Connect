@@ -11,8 +11,8 @@ const userToken = localStorage.getItem('chatToken');
 chatClient.connectUser(
   {
     id: store.getState().auth.user.id,
-    name: 'kela',
-    image: 'https://getstream.io/random_png/?id=quiet-dream-0&name=abcd',
+    name:store.getState().auth.user.username,
+    image: `https://getstream.io/random_png/?id=quiet-dream-0&name=${store.getState().auth.user.username}`,
   },
   userToken,
 );
@@ -20,7 +20,7 @@ chatClient.connectUser(
 const channel = chatClient.channel('messaging', 'custom_channel_id', {
   // add as many custom fields as you'd like
   image: 'https://www.drupal.org/files/project-images/react.png',
-  name: 'Talk about React',
+  name: 'Vesi',
   // members: ['quiet-dream-0'],
 });
 

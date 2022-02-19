@@ -15,6 +15,11 @@ body {
   padding-bottom: 48px;
   font-family: 'IBM Plex Sans', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
   -webkit-font-smoothing: antialiased;
+  background: none !important;
+}
+
+body .chakra-ui-light {
+  background-color: #f4f6f8 !important;
 }
 
 App {

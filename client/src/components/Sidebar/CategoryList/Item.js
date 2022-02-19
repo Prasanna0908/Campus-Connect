@@ -22,41 +22,41 @@ const Item = styled(NavLink)`
 const SidebarCategoryListItem = ({ category }) => {
   const isAll = category === 'all';
   return (
-    // <Item exact={isAll} to={isAll ? '/' : `/Vesit/${category}`}>
-    //   {category}
-    // </Item>
+    <Item exact={isAll} to={isAll ? '/' : `/Vesit/${category}`}>
+      {category}
+    </Item>
 
-      <Menu mb="5">
-      <Link as={RouterNavLink} exact={isAll} to={isAll ? '/' : `/Vesit/${category}`} textDecor='none'>
-  <MenuButton w='100%' mb="1" as={Button} exact={isAll} to={isAll ? '/' : `/Vesit/${category}`} //rightIcon={<ChevronDownIcon />}
-  >
-    {category}
-  </MenuButton>
-  </Link>
+//       <Menu mb="5">
+//       <Link as={RouterNavLink} exact={isAll} to={isAll ? '/' : `/Vesit/${category}`} textDecor='none'>
+//   <MenuButton w='100%' mb="1" as={Button} exact={isAll} to={isAll ? '/' : `/Vesit/${category}`} //rightIcon={<ChevronDownIcon />}
+//   >
+//     {category}
+//   </MenuButton>
+//   </Link>
 
-  <MenuList>
-    <MenuItem minH='48px'>
-      <Image
-        boxSize='2rem'
-        borderRadius='full'
-        src='https://placekitten.com/100/100'
-        alt='Fluffybuns the destroyer'
-        mr='12px'
-      />
-      <span>Fluffybuns the Destroyer</span>
-    </MenuItem>
-    <MenuItem minH='40px'>
-      <Image
-        boxSize='2rem'
-        borderRadius='full'
-        src='https://placekitten.com/120/120'
-        alt='Simon the pensive'
-        mr='12px'
-      />
-      <span>Simon the pensive</span>
-    </MenuItem>
-  </MenuList>
-</Menu>
+//   <MenuList>
+//     <MenuItem minH='48px'>
+//       <Image
+//         boxSize='2rem'
+//         borderRadius='full'
+//         src='https://placekitten.com/100/100'
+//         alt='Fluffybuns the destroyer'
+//         mr='12px'
+//       />
+//       <span>Fluffybuns the Destroyer</span>
+//     </MenuItem>
+//     <MenuItem minH='40px'>
+//       <Image
+//         boxSize='2rem'
+//         borderRadius='full'
+//         src='https://placekitten.com/120/120'
+//         alt='Simon the pensive'
+//         mr='12px'
+//       />
+//       <span>Simon the pensive</span>
+//     </MenuItem>
+//   </MenuList>
+// </Menu>
   
   );
 };

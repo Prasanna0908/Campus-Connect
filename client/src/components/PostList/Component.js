@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import PostListItem from './Item';
 import LoadingIndicatorBox from '../shared/LoadingIndicator/Box';
 import Empty from '../shared/Empty';
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react';
+import { Tabs, TabList, TabPanels, Tab, TabPanel, Flex} from '@chakra-ui/react';
 import SearchBox from "./SearchBox"
 
 const List = styled.ul`
@@ -66,11 +66,20 @@ class PostList extends React.Component {
     if (this.props.isFetching) return <LoadingIndicatorBox />;
     if (!this.props.posts || this.props.posts.length === 0) return <Empty />;
     return (
-      <Tabs>
-        <TabList>
-          <Tab>By Date</Tab>
+      <Tabs w="100%">
+        <TabList w="100%" >
+         <Flex justifyContent="space-between" w="100%">
+           <Flex>
+
+           <Tab>By Date</Tab>
           <Tab>By Votes</Tab>
-          <SearchBox props={this.props.posts} placeholder="Search by Title" />
+           </Flex>
+       
+          <Flex>
+          <SearchBox  props={this.props.posts} placeholder="Search by Title" />
+          </Flex>
+         
+         </Flex>
          
         </TabList>
 

@@ -64,10 +64,16 @@ const createPostRequest = { type: CREATE_POST_REQUEST };
 const createPostSuccess = post => ({ type: CREATE_POST_SUCCESS, post });
 const createPostError = error => ({ type: CREATE_POST_ERROR, error });
 
-export const attemptCreatePost = (post, data) => async (dispatch, getState) => {
+export const attemptCreatePost = (post, data,poll) => async (dispatch, getState) => {
 
   if(data){
     post.text=data
+  }
+
+  
+  if(poll && poll.length !== 0){
+    post.text=  poll.toString()
+    console.log(post.text)
   }
   
   dispatch(createPostRequest);
